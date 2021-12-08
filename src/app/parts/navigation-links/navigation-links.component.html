@@ -1,0 +1,8 @@
+<div class="navigation-menu">
+  <ul>
+    <li class="menu-item" *ngFor="let listItem of menuRoutes" routerLinkActive="active-link"
+        [ngClass]="{'active':listItem == activeItem}">
+      <a (click)="setActiveItem(listItem)">{{translate[listItem]}}</a>
+    </li>
+  </ul>
+</div>

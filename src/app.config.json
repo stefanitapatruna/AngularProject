@@ -1,0 +1,7 @@
+{
+  "pokemonBaseApi": "https://pokeapi.co/api/v2/pokemon/",
+  "pokemonEvolution": "https://pokeapi.co/api/v2/evolution-chain/",
+  "pokemonSpecies": "https://pokeapi.co/api/v2/pokemon-species/",
+  "pokemonDamage": "https://pokeapi.co/api/v2/move/",
+  "pokemonDetailsBaseApi": "https://pokeapi.co/api/v2/pokemon/"
+}

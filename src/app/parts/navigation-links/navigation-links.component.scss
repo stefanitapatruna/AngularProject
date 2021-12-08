@@ -1,0 +1,41 @@
+@import "../../../assets/styles/color-variables";
+
+.navigation-menu {
+  background-color: $menu-color-main;
+  height: 60px;
+  width: 100%;
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    .menu-item {
+      display: inline-block;
+      min-width: 120px;
+      height: 60px;
+      line-height: 60px;
+      background-color: $menu-color-main;
+      border-right: 1px solid $menu-color-secondary;
+      margin: 0 auto;
+      padding: 0 10px;
+      text-transform: capitalize;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $menu-color-hover;
+      }
+
+      &.active {
+        background-color: $menu-color-active;
+      }
+    }
+  }
+
+  a {
+    color: $menu-color-secondary;
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+  }
+}

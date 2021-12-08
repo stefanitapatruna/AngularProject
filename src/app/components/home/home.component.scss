@@ -1,0 +1,40 @@
+@import "../../../assets/styles/color-variables";
+
+.pokemon-info {
+  margin: 5px 60px auto;
+}
+
+.pokemon-list {
+  margin: 40px 40px auto;
+
+  .pokemon-list-item {
+
+    display: inline-block;
+    margin: 1%;
+    width: 18%;
+    border: 1px solid $menu-color-main;
+
+    .pokemon-image {
+
+      display: block;
+      height: auto;
+      min-height: 50px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .pokemon-name {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      height: 100px;
+      text-align: center;
+      overflow: overlay;
+    }
+  }
+}
+
+.pokemon-buttons {
+  margin: 5px 60px auto;
+  text-align: right;
+}

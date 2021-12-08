@@ -1,0 +1,16 @@
+<div class="pokemon-info">
+  <p>Showing 30 pokemons of {{pokemons.count}}. Starting from {{pokemonIndexStart}} to
+    <span *ngIf="pokemonIndexEnd< pokemons.count">{{pokemonIndexEnd}}</span>
+    <span *ngIf="pokemonIndexEnd> pokemons.count">{{pokemons.count}}</span>.
+  </p>
+</div>
+<div class="pokemon-list">
+    <div class="pokemon-list-item" *ngFor="let item of pokemons.results">
+        <img class="pokemon-image" src="">
+        <a class="pokemon-name" (click)="goToPokemonDetail(item.name)">{{item.name}}</a>
+   </div>
+</div>
+<div class="pokemon-buttons">
+  <button mat-button color="primary" (click)="getPokemonsPreviousPage(pokemons.previous)" [disabled]="pokemons.previous === null">previous</button>
+  <button mat-button color="primary" (click)="getPokemonsNextPage(pokemons.next)" [disabled]="pokemons.next === null">next</button>
+</div>

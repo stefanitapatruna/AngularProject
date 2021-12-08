@@ -1,0 +1,20 @@
+<p>Detail page of {{name}}</p>
+pokemon id :{{pokemonDetail.id}}
+<div *ngIf="pokemonDetail.id">
+  <p>
+  ID: {{pokemonDetail.id}}<br />
+  Name: {{pokemonDetail.name}}<br />
+  Weight: {{pokemonDetail.weight}} kg<br />
+  Height: {{pokemonDetail.height}} meters<br />
+  </p>
+  <ul>
+    <li *ngFor="let ability of pokemonDetail.abilities">
+      {{ability.ability.name}}
+    </li>
+  </ul>
+</div>
+<div *ngIf="!pokemonDetail.id">
+  loading....
+</div>
+
+
