@@ -1,9 +1,13 @@
-@import "../../../assets/styles/color-variables";
+@import "../../../assets/styles/variables";
 
 .navigation-menu {
   background-color: $menu-color-main;
   height: 60px;
   width: 100%;
+
+  @media screen and (max-width: $breakpoint-desktop){
+    height: auto;
+  }
 
   ul {
     list-style: none;
@@ -12,6 +16,11 @@
     li {
       display: inline-block;
       min-width: 120px;
+
+      @media screen and (max-width: $breakpoint-desktop){
+        display: initial;
+        width: 100%;
+      }
     }
   }
 
@@ -23,6 +32,10 @@
     height: 60px;
     padding: 0 10px;
     text-decoration: none;
+
+    @media screen and (max-width: $breakpoint-desktop){
+      border-right: none;
+    }
   }
 
   a {

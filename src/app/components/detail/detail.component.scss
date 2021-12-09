@@ -41,6 +41,18 @@
       vertical-align: top;
       width: 25%;
     }
+
+    @media screen and (max-width: $breakpoint-mobile){
+      .pokemon-image-section {
+        width: 100%;
+      }
+      .pokemon-data-section {
+        width: 80%;
+      }
+      .pokemon-id-section {
+        width: 20%;
+      }
+    }
   }
 
   .section-title {
@@ -52,5 +64,9 @@
     li {
       display: inline;
     }
+  }
+  .loading-container {
+    text-align: center;
+    width: 100%;
   }
 }
