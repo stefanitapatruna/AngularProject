@@ -9,33 +9,41 @@
     list-style: none;
     padding: 0;
 
-    .menu-item {
+    li {
       display: inline-block;
       min-width: 120px;
-      height: 60px;
-      line-height: 60px;
-      background-color: $menu-color-main;
-      border-right: 1px solid $menu-color-secondary;
-      margin: 0 auto;
-      padding: 0 10px;
-      text-transform: capitalize;
-
-      &:hover {
-        cursor: pointer;
-        background-color: $menu-color-hover;
-      }
-
-      &.active {
-        background-color: $menu-color-active;
-      }
     }
   }
 
+  .menu-title {
+    border-right: 1px solid $menu-color-secondary;
+    color: $menu-color-secondary;
+    line-height: 60px;
+    margin: 0 auto;
+    height: 60px;
+    padding: 0 10px;
+    text-decoration: none;
+  }
+
   a {
+    background-color: $menu-color-main;
+    border-right: 1px solid $menu-color-secondary;
     color: $menu-color-secondary;
     display: block;
+    line-height: 60px;
+    margin: 0 auto;
+    height: 60px;
+    padding: 0 10px;
     text-decoration: none;
     width: 100%;
-    height: 100%;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $menu-color-hover;
+    }
+
+    &.active {
+      background-color: $menu-color-active;
+    }
   }
 }

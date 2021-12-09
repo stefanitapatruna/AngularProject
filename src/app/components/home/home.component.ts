@@ -3,7 +3,9 @@ import { PokemonService } from "../../services/pokemon/pokemon.service";
 import { PokemonsBook } from "../../interfaces/pokemonsBook";
 import { ConfigAppService } from "../../services/config/config-app.service";
 import { Router } from "@angular/router";
-import {SelectedPokemonService} from "../../services/selectedPokemon/selected-pokemon.service";
+import { SelectedPokemonService } from "../../services/selectedPokemon/selected-pokemon.service";
+import { DomSanitizer } from "@angular/platform-browser";
+import { PokemonData } from "../../interfaces/pokemonData";
 
 
 @Component({
@@ -14,13 +16,18 @@ import {SelectedPokemonService} from "../../services/selectedPokemon/selected-po
 export class HomeComponent implements OnInit {
 
   pokemonUrl: string = '';
+  pokemonDetail= {} as PokemonData;
   pokemonIndexStart: number = 0;
   pokemonIndexEnd: number = 30;
 
   pokemons = { } as PokemonsBook;
 
-  constructor(private _pokemonService: PokemonService, private configuration: ConfigAppService, private router: Router,
-              private selectedPokemon: SelectedPokemonService ) {
+  constructor(private _pokemonService: PokemonService,
+              private configuration: ConfigAppService,
+              private router: Router,
+              private selectedPokemon: SelectedPokemonService,
+              private sanitizer: DomSanitizer ) {
+
     this.pokemonUrl = configuration.pokemonBaseApi + '?limit=30&offset=0';
   }
 
@@ -31,11 +38,7 @@ export class HomeComponent implements OnInit {
   getPokemons(url:string): void {
     this._pokemonService.getPokemons(url)
       .subscribe(data => {
-        this.pokemons.count = data.count;
-        this.pokemons.next = data.next;
-        this.pokemons.previous = data.previous;
-        this.pokemons.results = data.results;
-        console.log(this.pokemons.results);
+        this.pokemons= data;
       })
   }
 
@@ -56,7 +59,7 @@ export class HomeComponent implements OnInit {
     this.pokemonIndexEnd -= 30;
   }
 
-  getPokemonData(url:string) {
-    return this.pokemonUrl;
+  getPokemonImage(name:string) {
+    return '../../../assets/images/fallbackImage.jfif';
   }
 }

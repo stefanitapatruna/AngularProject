@@ -5,9 +5,9 @@
   </p>
 </div>
 <div class="pokemon-list">
-    <div class="pokemon-list-item" *ngFor="let item of pokemons.results">
-        <img class="pokemon-image" src="">
-        <a class="pokemon-name" (click)="goToPokemonDetail(item.name)">{{item.name}}</a>
+  <div class="pokemon-list-item" *ngFor="let item of pokemons.results" (click)="goToPokemonDetail(item.name)">
+        <img class="pokemon-image" [src]="getPokemonImage(item.name)">
+        <a class="pokemon-name">{{item.name}}</a>
    </div>
 </div>
 <div class="pokemon-buttons">

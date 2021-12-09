@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable, Subject} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,8 @@ import {Observable, Subject} from "rxjs";
 
 export class SelectedPokemonService {
 
-  selectedPokemon: Subject<string> = new Subject<string>();
+  //if not any pokemon selected the Detail page would show bulbasar details as a default
+  selectedPokemon: BehaviorSubject<string> = new BehaviorSubject('bulbasaur');
 
   constructor() {
   }

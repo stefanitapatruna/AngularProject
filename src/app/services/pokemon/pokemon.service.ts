@@ -35,4 +35,7 @@ export class PokemonService {
   getImage(imageUrl: string): Observable<Blob> {
     return this.http.get(imageUrl, { responseType: 'blob' });
   }
+
+  getPokemonImageUrl(name:string) {
+  }
 }

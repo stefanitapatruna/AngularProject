@@ -1,20 +1,32 @@
-<p>Detail page of {{name}}</p>
-pokemon id :{{pokemonDetail.id}}
-<div *ngIf="pokemonDetail.id">
-  <p>
-  ID: {{pokemonDetail.id}}<br />
-  Name: {{pokemonDetail.name}}<br />
-  Weight: {{pokemonDetail.weight}} kg<br />
-  Height: {{pokemonDetail.height}} meters<br />
-  </p>
-  <ul>
-    <li *ngFor="let ability of pokemonDetail.abilities">
-      {{ability.ability.name}}
-    </li>
-  </ul>
-</div>
-<div *ngIf="!pokemonDetail.id">
-  loading....
+<div class="detail-container">
+  <div *ngIf="pokemonDetail.id">
+    <div class="main-title">
+      {{pokemonDetail.name}}
+    </div>
+    <div class="detail-section">
+      <div class="pokemon-image-section">
+        <img class="pokemon-image" [src]="pokemonImage">
+      </div>
+      <div class="pokemon-data-section">
+        <p>
+          Weight: {{pokemonDetail.weight}} kg<br />
+          Height: {{pokemonDetail.height}} meters<br />
+        </p>
+        <p>Abilities:</p>
+        <ul class="abilities-list">
+          <li *ngFor="let ability of pokemonDetail.abilities">
+            {{ability.ability.name}}
+          </li>
+        </ul>
+      </div>
+      <div class="pokemon-id-section">
+        <p>#{{pokemonDetail.id}}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!pokemonDetail.id">
+    <img src="../../../assets/images/loading.gif">
+  </div>
 </div>
 
 

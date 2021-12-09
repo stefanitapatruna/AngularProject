@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from "../../services/user/user.service";
-import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-navigation-links',
@@ -18,25 +16,13 @@ export class NavigationLinksComponent implements OnInit {
     productList: 'Product List'
   }
 
-  menuRoutes: string[] = [];
-  activeItem= 'home';
-  clicked: boolean = false;
-  isAdmin = false;
-  basicMenu = ['pokemon','home'];
-  adminMenu = ['pokemon','home','detail','createProduct','productList'];
+  menuTitle = 'Pokemon';
 
-  constructor(user: UserService, private router: Router) {
-    this.isAdmin = user.isAdmin();
-  }
+  menuRoutes = ['home','detail','createProduct','productList'];
 
-  setActiveItem(item: any) {
-    this.activeItem = item;
-    this.router.navigateByUrl(item);
+  constructor() {
   }
 
   ngOnInit(): void {
-    if (this.isAdmin)
-    { this.menuRoutes = this.adminMenu }
-    else { this.menuRoutes = this.basicMenu }
   }
 }
