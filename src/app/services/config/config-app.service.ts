@@ -20,6 +20,7 @@ export class ConfigAppService extends AppConfig {
         this.pokemonEvolution = data.pokemonEvolution;
         this.pokemonSpecies = data.pokemonSpecies
         this.pokemonDetailsBaseApi=data.pokemonDetailsBaseApi;
+        this.pokemonCategoriesUrl = data.pokemonCategoriesUrl;
       })
       .catch(()=> {
         console.error("Could not load configuration");

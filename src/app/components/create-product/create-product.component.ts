@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl,FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {PokemonService} from "../../services/pokemon/pokemon.service";
 
 @Component({
   selector: 'app-create-product',
@@ -7,7 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateProductComponent implements OnInit {
 
-  constructor() { }
+  category : string = '';
+  categories : { results: [{name: string}]} = {results : [{name:''}]};
+  constructor( private _pokemonService: PokemonService) {
+    this.getCategories();
+  }
+
+  getCategories() {
+    this._pokemonService.getPokemonCategories().subscribe( data => {
+      this.categories = data;
+      console.log( this.categories);
+    })
+  }
 
   ngOnInit(): void {
   }

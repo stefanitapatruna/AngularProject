@@ -4,6 +4,7 @@ export abstract class AppConfig {
   pokemonSpecies: string;
   pokemonDamage: string;
   pokemonDetailsBaseApi: string;
+  pokemonCategoriesUrl: string;
 
   constructor() {
     this.pokemonBaseApi = '';
@@ -11,5 +12,6 @@ export abstract class AppConfig {
     this.pokemonSpecies = '';
     this.pokemonDamage = '';
     this.pokemonDetailsBaseApi = '';
+    this.pokemonCategoriesUrl = '';
   }
 }

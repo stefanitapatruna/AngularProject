@@ -15,6 +15,7 @@ export class PokemonService {
   private pokemonSpecies: string;
   private pokemonDamage: string;
   private pokemonDetailsBaseApi: string;
+  private pokemonCategoriesUrl: string;
 
   constructor(private configuration: ConfigAppService, private http: HttpClient) {
     this.pokemonBaseApi = configuration.pokemonBaseApi ;
@@ -22,6 +23,7 @@ export class PokemonService {
     this.pokemonSpecies = configuration.pokemonSpecies;
     this.pokemonDamage = configuration.pokemonDamage;
     this.pokemonDetailsBaseApi = configuration.pokemonDetailsBaseApi;
+    this.pokemonCategoriesUrl = configuration.pokemonCategoriesUrl;
   }
 
   getPokemons(url:string): Observable<PokemonsBook> {
@@ -34,6 +36,10 @@ export class PokemonService {
 
   getImage(imageUrl: string): Observable<Blob> {
     return this.http.get(imageUrl, { responseType: 'blob' });
+  }
+
+  getPokemonCategories ():Observable<any> {
+    return this.http.get(this.pokemonCategoriesUrl);
   }
 
   getPokemonImageUrl(name:string) {

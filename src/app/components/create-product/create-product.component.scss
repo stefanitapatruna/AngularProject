@@ -1,0 +1,34 @@
+@import "../../../assets/styles/variables";
+
+.create-product-container {
+  padding: 30px 60px;
+
+  @media screen and (max-width: $breakpoint-mobile){
+     padding: 10px;
+  }
+
+  .form-element-inline {
+    display: inline-block;
+    width: 33%;
+    padding: 5px 10px;
+
+    @media screen and (max-width: $breakpoint-mobile) {
+      display: block;
+      width: 100%;
+    }
+    .mat-form-field {
+      width: 100%;
+    }
+
+    .phone-field {
+      display: inline-block;
+      padding-right: 10px;
+      width: 60%;
+    }
+
+    .phone-country-prefix {
+      display: inline-block;
+      width: 40%;
+    }
+  }
+}
