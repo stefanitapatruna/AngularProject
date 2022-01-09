@@ -7,8 +7,4 @@ export class UserService {
 
   constructor() {
   }
-
-  isAdmin = function () {
-    return true;
-  }
 }

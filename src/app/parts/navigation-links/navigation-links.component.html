@@ -4,5 +4,8 @@
     <li *ngFor="let listItem of menuRoutes">
       <a routerLink="{{listItem}}" routerLinkActive="active">{{translate[listItem]}}</a>
     </li>
+    <li class="">
+      <button mat-button color="primary" (click)="toggleAdmin()">Toggle Admin</button>
+    </li>
   </ul>
 </div>

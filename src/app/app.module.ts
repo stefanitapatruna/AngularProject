@@ -23,6 +23,7 @@ import { AppConfig } from "./configuration/appConfig";
 
 //import Angular Material
 import { MatButtonModule } from "@angular/material/button";
+import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 
 export function initializerFn(configAppService: ConfigAppService){
   return () => {
@@ -38,7 +39,8 @@ export function initializerFn(configAppService: ConfigAppService){
     DetailComponent,
     CreateProductComponent,
     ProductListComponent,
-    NavigationLinksComponent
+    NavigationLinksComponent,
+    PokemonCardComponent
   ],
   imports: [
     BrowserModule,

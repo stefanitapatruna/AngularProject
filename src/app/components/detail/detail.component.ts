@@ -3,6 +3,8 @@ import { PokemonService } from "../../services/pokemon/pokemon.service";
 import { PokemonData } from "../../interfaces/pokemonData";
 import { SelectedPokemonService } from "../../services/selectedPokemon/selected-pokemon.service";
 import { DomSanitizer } from "@angular/platform-browser";
+import { forkJoin, of } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-detail',
@@ -22,19 +24,45 @@ export class DetailComponent implements OnInit {
               private sanitizer: DomSanitizer) {  }
 
   ngOnInit(): void {
-
     this._selectedPokemon.getSelectedPokemon().subscribe(name => {
       this.getPokemonDetail(name);
     })
   }
 
-  getPokemonDetail(name:string): void {
+  getPokemonDetail(name:string) {
     this._pokemonService.getPokemonDetail(name).subscribe( data => {
         this.pokemonDetail = data;
         this.pokemonDetail.weight *= 0.1;
         this.pokemonDetail.height = (this.pokemonDetail.height * 0.1).toFixed(2);
         this.getPokemonImage(this.pokemonDetail.sprites.front_default);
+        this.getPokemonCompleteDetails(this.pokemonDetail.id);
+        console.log('pokemon evolution chain url',this.pokemonDetail);
+        console.log('pokemon species 1', this.pokemonDetail.species)
     })
+  }
+
+  getPokemonCompleteDetails(id:number) {
+     let evolution  = <object>{};
+     let species = <object>{};
+     let moves = <object>{};
+
+     this.getSpeciesDetail(id);
+  }
+
+  getSpeciesDetail(id:number) {
+    this._pokemonService.getPokemonSpecies(id).subscribe( data => {
+      this.pokemonDetail.species = data;
+      this.getEvolutionDetail(this.pokemonDetail.species.evolution_chain.url);
+      }
+    );
+  }
+
+  getEvolutionDetail(url:string) {
+    this._pokemonService.getPokemonEvolution(url).subscribe( data => {
+        //this.pokemonDetail.evolution = data;
+        console.log('here is evolution chain after map', data);
+      }
+    );
   }
 
   getPokemonImage(url:string) {

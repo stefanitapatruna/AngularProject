@@ -6,6 +6,8 @@ import { Router } from "@angular/router";
 import { SelectedPokemonService } from "../../services/selectedPokemon/selected-pokemon.service";
 import { DomSanitizer } from "@angular/platform-browser";
 import { PokemonData } from "../../interfaces/pokemonData";
+import { mergeMap } from "rxjs/operators";
+import { UserService } from "../../services/user/user.service";
 
 
 @Component({
@@ -26,7 +28,8 @@ export class HomeComponent implements OnInit {
               private configuration: ConfigAppService,
               private router: Router,
               private selectedPokemon: SelectedPokemonService,
-              private sanitizer: DomSanitizer ) {
+              private sanitizer: DomSanitizer,
+              private _user:UserService ) {
 
     this.pokemonUrl = configuration.pokemonBaseApi + '?limit=30&offset=0';
   }
@@ -59,7 +62,16 @@ export class HomeComponent implements OnInit {
     this.pokemonIndexEnd -= 30;
   }
 
+  // getPokemonImage(name:string) {
+  //   return '../../../assets/images/fallbackImage.jfif';
+  // }
+
   getPokemonImage(name:string) {
-    return '../../../assets/images/fallbackImage.jfif';
+
+    this._pokemonService.getPokemonDetail(name).pipe(
+      mergeMap((responseDetail:PokemonData) => this._pokemonService.getImage(responseDetail.sprites.front_default))
+    ).subscribe( image => {
+      return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(image));
+    })
   }
 }

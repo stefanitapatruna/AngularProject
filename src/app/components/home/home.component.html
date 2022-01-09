@@ -5,10 +5,10 @@
   </p>
 </div>
 <div class="pokemon-list">
-  <div class="pokemon-list-item" *ngFor="let item of pokemons.results" (click)="goToPokemonDetail(item.name)">
-        <img class="pokemon-image" [src]="getPokemonImage(item.name)">
-        <a class="pokemon-name">{{item.name}}</a>
-   </div>
+  <app-pokemon-card class="pokemon-item" *ngFor="let item of pokemons.results"
+                     (click)="goToPokemonDetail(item.name)"
+                     [pokemonName]="item.name">
+  </app-pokemon-card>
 </div>
 <div class="pokemon-buttons">
   <button mat-button color="primary" (click)="getPokemonsPreviousPage(pokemons.previous)" [disabled]="pokemons.previous === null">previous</button>

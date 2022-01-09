@@ -16,13 +16,26 @@ export class NavigationLinksComponent implements OnInit {
     productList: 'Product List'
   }
 
+  isAdmin: boolean = true;
   menuTitle = 'Pokemon';
 
-  menuRoutes = ['home','detail','createProduct','productList'];
+  menuRoutesForAdmin = ['home','detail','createProduct','productList'];
+  menuRoutesForUser = ['home','detail'];
+
+  menuRoutes = this.menuRoutesForAdmin;
 
   constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  toggleAdmin() {
+    this.isAdmin = !this.isAdmin;
+    if( this.isAdmin ) {
+      this.menuRoutes = this.menuRoutesForAdmin;
+    } else {
+      this.menuRoutes = this.menuRoutesForUser;
+    }
   }
 }

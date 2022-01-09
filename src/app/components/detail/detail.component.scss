@@ -1,17 +1,38 @@
 @import "../../../assets/styles/variables";
 
 .detail-container {
+  margin: 0 auto;
+  width: 80%;
+
+  @media screen and (max-width: $breakpoint-desktop) {
+    width: 100%;
+  }
+
   padding: 30px 60px;
 
-  .main-title {
+  .section {
+    margin-bottom: 10px;
+  }
+
+  .main-title, .section-title {
     background-color: $section-header;
     color: $main-color-text;
-    font-size: $extra-large-font-size;
-    height: 60px;
-    line-height: 60px;
-    text-align: center;
     text-transform: capitalize;
     width: 100%;
+  }
+
+  .main-title {
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    font-size: $extra-large-font-size;
+  }
+
+  .section-title {
+    height: 40px;
+    line-height: 40px;
+    font-size: $large-font-size;
+    padding: 0 10px;
   }
 
   .detail-section {
@@ -55,12 +76,11 @@
     }
   }
 
-  .section-title {
-
-  }
-
-  .abilities-list {
+  .inline-list {
+    display: inline-block;
     list-style: none;
+    padding-left: 0;
+
     li {
       display: inline;
     }
@@ -68,5 +88,73 @@
   .loading-container {
     text-align: center;
     width: 100%;
+  }
+
+  .types {
+    display: inline-block;
+    background-color: grey;
+    width: 100px;
+    font-size: $large-font-size;
+    font-weight: 500;
+    color: $menu-color-secondary;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+  }
+  .stat {
+    width: 100%;
+  }
+  .stats-label {
+    display: inline-block;
+    height: 20px;
+    width: 25%;
+    margin: 5px 10px;
+  }
+
+  .stats-row {
+    display: flex;
+  }
+
+  .stats-show {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    width: 65%;
+    margin: 5px 10px;
+    outline: 1px solid $menu-color-main;
+    position: relative;
+
+    .percentage-bar {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      height: 100%;
+      z-index: 20;
+      color: $menu-color-secondary;
+      background-color: grey;
+      padding-left: 10px;
+      width: 10%;
+    }
+  }
+
+  .profile-info {
+    display: inline-block;
+    padding: 5px 10px;
+    width: 50%;
+
+    label {
+      font-weight: bold;
+    }
+
+    label,p {
+      display: inline-block;
+    }
+  }
+  .flavor-text {
+    padding: 0 10px;
   }
 }

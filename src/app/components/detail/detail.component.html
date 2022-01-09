@@ -1,6 +1,6 @@
 <div class="detail-container">
   <div *ngIf="pokemonDetail.id">
-    <div class="main-title">
+    <div class="main-title" [style.background-color]="pokemonDetail.species.color.name">
       {{pokemonDetail.name}}
     </div>
     <div class="detail-section">
@@ -8,20 +8,70 @@
         <img class="pokemon-image" [src]="pokemonImage">
       </div>
       <div class="pokemon-data-section">
-        <p>
-          Weight: {{pokemonDetail.weight}} kg<br />
-          Height: {{pokemonDetail.height}} meters<br />
-        </p>
-        <p>Abilities:</p>
-        <ul class="abilities-list">
-          <li *ngFor="let ability of pokemonDetail.abilities">
-            {{ability.ability.name}}
-          </li>
-        </ul>
+        <div class="" *ngIf="pokemonDetail.types.length">
+          <div class="types" *ngFor="let typesName of pokemonDetail.types">
+            {{typesName.type.name}}
+          </div>
+          <div class="statistics">
+            <div class="stats-row" *ngFor="let stats of pokemonDetail.stats">
+              <div class="stats-label">{{stats.stat.name}}:</div>
+              <div class="stats-show">
+                <div class="percentage-bar" [style.background-color]="pokemonDetail.species.color.name"
+                     [style.width]="stats.base_stat> 100 ? '100%' : stats.base_stat+'%'">
+                  {{stats.base_stat}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="pokemon-id-section">
         <p>#{{pokemonDetail.id}}</p>
       </div>
+      <div class="flavor-text">
+        <p>{{this.pokemonDetail.species.flavor_text_entries[0].flavor_text}}</p>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title" [style.background-color]="pokemonDetail.species.color.name">Profile</div>
+        <div class="profile-info">
+          <label>Weight:</label>
+          <p>&nbsp;{{pokemonDetail.weight}}&nbsp;kg</p>
+        </div>
+        <div class="profile-info">
+          <label>Height:</label>
+          <p>&nbsp;{{pokemonDetail.height}}&nbsp;meters</p>
+        </div>
+        <div class="profile-info">
+          <label>Catch Rate:</label>
+          <p>&nbsp;{{pokemonDetail.species.capture_rate}}%</p>
+        </div>
+        <div class="profile-info">
+          <label>Egg Groups:</label>
+          &nbsp;
+          <ul class="inline-list">
+            <li *ngFor="let egg of pokemonDetail.species.egg_groups">
+              {{egg.name}}
+            </li>
+          </ul>
+        </div>
+        <div class="profile-info">
+          <label>Abilities:</label>
+          &nbsp;
+          <ul class="inline-list">
+            <li *ngFor="let abilities of pokemonDetail.abilities">
+              {{abilities.ability.name}}
+            </li>
+          </ul>
+        </div>
+
+    </div>
+    <div class="section">
+      <div class="section-title" [style.background-color]="pokemonDetail.species.color.name">Evolutions</div>
+
+    </div>
+    <div class="section">
+      <div class="section-title" [style.background-color]="pokemonDetail.species.color.name">Damage when attacked</div>
     </div>
   </div>
   <div class="loading-container" *ngIf="!pokemonDetail.id">

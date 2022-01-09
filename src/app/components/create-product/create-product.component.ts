@@ -18,7 +18,6 @@ export class CreateProductComponent implements OnInit {
   getCategories() {
     this._pokemonService.getPokemonCategories().subscribe( data => {
       this.categories = data;
-      console.log( this.categories);
     })
   }
 
