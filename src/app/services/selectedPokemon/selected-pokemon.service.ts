@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from "rxjs";
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class SelectedPokemonService {
   constructor() {
   }
 
-  setSelectedPokemon(name: string) : void {
+  setSelectedPokemon(name: string): void {
     this.selectedPokemon.next(name);
   }
 
@@ -25,20 +25,20 @@ export class SelectedPokemonService {
     return this.selectedPokemon;
   }
 
-  setSearchedPokemon(name:string) : void {
+  setSearchedPokemon(name: string): void {
     this.errorMessage.next('');
     this.searchedPokemon.next(name);
   }
 
-  getSearchedPokemon():Observable<string> {
+  getSearchedPokemon(): Observable<string> {
     return this.searchedPokemon;
   }
 
-  setErrorMessage(message:string): void {
+  setErrorMessage(message: string): void {
     this.errorMessage.next(message);
   }
 
-  getErrorMessage():Observable<string> {
+  getErrorMessage(): Observable<string> {
     return this.errorMessage;
   }
 }

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NavigationLinksComponent } from './navigation-links.component';
+import {NavigationLinksComponent} from './navigation-links.component';
 
 describe('NavigationLinksComponent', () => {
   let component: NavigationLinksComponent;
@@ -8,9 +8,9 @@ describe('NavigationLinksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavigationLinksComponent ]
+      declarations: [NavigationLinksComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

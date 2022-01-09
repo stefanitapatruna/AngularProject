@@ -1,10 +1,10 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { PokemonService } from "../../services/pokemon/pokemon.service";
-import { PokemonData } from "../../interfaces/pokemonData";
-import { SelectedPokemonService } from "../../services/selectedPokemon/selected-pokemon.service";
-import { DomSanitizer } from "@angular/platform-browser";
-import { forkJoin, of } from "rxjs";
-import { map } from "rxjs/operators";
+import {Component, NgZone, OnInit} from '@angular/core';
+import {PokemonService} from "../../services/pokemon/pokemon.service";
+import {PokemonData} from "../../interfaces/pokemonData";
+import {SelectedPokemonService} from "../../services/selectedPokemon/selected-pokemon.service";
+import {DomSanitizer} from "@angular/platform-browser";
+import {forkJoin, of} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-detail',
@@ -14,14 +14,15 @@ import { map } from "rxjs/operators";
 
 export class DetailComponent implements OnInit {
 
-  pokemonImage: any ;
-  pokemonDetail = { } as PokemonData;
+  pokemonImage: any;
+  pokemonDetail = {} as PokemonData;
   loading: boolean = true;
 
   constructor(private _pokemonService: PokemonService,
               private _selectedPokemon: SelectedPokemonService,
               private ngZone: NgZone,
-              private sanitizer: DomSanitizer) {  }
+              private sanitizer: DomSanitizer) {
+  }
 
   ngOnInit(): void {
     this._selectedPokemon.getSelectedPokemon().subscribe(name => {
@@ -29,43 +30,43 @@ export class DetailComponent implements OnInit {
     })
   }
 
-  getPokemonDetail(name:string) {
-    this._pokemonService.getPokemonDetail(name).subscribe( data => {
-        this.pokemonDetail = data;
-        this.pokemonDetail.weight *= 0.1;
-        this.pokemonDetail.height = (this.pokemonDetail.height * 0.1).toFixed(2);
-        this.getPokemonImage(this.pokemonDetail.sprites.front_default);
-        this.getPokemonCompleteDetails(this.pokemonDetail.id);
-        console.log('pokemon evolution chain url',this.pokemonDetail);
-        console.log('pokemon species 1', this.pokemonDetail.species)
+  getPokemonDetail(name: string) {
+    this._pokemonService.getPokemonDetail(name).subscribe(data => {
+      this.pokemonDetail = data;
+      this.pokemonDetail.weight *= 0.1;
+      this.pokemonDetail.height = (this.pokemonDetail.height * 0.1).toFixed(2);
+      this.getPokemonImage(this.pokemonDetail.sprites.front_default);
+      this.getPokemonCompleteDetails(this.pokemonDetail.id);
+      console.log('pokemon evolution chain url', this.pokemonDetail);
+      console.log('pokemon species 1', this.pokemonDetail.species)
     })
   }
 
-  getPokemonCompleteDetails(id:number) {
-     let evolution  = <object>{};
-     let species = <object>{};
-     let moves = <object>{};
+  getPokemonCompleteDetails(id: number) {
+    let evolution = <object>{};
+    let species = <object>{};
+    let moves = <object>{};
 
-     this.getSpeciesDetail(id);
+    this.getSpeciesDetail(id);
   }
 
-  getSpeciesDetail(id:number) {
-    this._pokemonService.getPokemonSpecies(id).subscribe( data => {
-      this.pokemonDetail.species = data;
-      this.getEvolutionDetail(this.pokemonDetail.species.evolution_chain.url);
+  getSpeciesDetail(id: number) {
+    this._pokemonService.getPokemonSpecies(id).subscribe(data => {
+        this.pokemonDetail.species = data;
+        this.getEvolutionDetail(this.pokemonDetail.species.evolution_chain.url);
       }
     );
   }
 
-  getEvolutionDetail(url:string) {
-    this._pokemonService.getPokemonEvolution(url).subscribe( data => {
+  getEvolutionDetail(url: string) {
+    this._pokemonService.getPokemonEvolution(url).subscribe(data => {
         //this.pokemonDetail.evolution = data;
         console.log('here is evolution chain after map', data);
       }
     );
   }
 
-  getPokemonImage(url:string) {
+  getPokemonImage(url: string) {
     this._pokemonService.getImage(url).subscribe(data =>
       this.pokemonImage = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data)))
   }

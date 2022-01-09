@@ -10,7 +10,7 @@
   width: 16%;
   height: 180px;
 
-  @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-desktop){
+  @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-desktop) {
     margin: 0.65%;
     width: 32%;
   }

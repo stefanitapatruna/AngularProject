@@ -1,35 +1,35 @@
 import {APP_INITIALIZER, NgModule} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from "@angular/common/http";
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from "@angular/common/http";
 
 //import Components
-import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
-import { DetailComponent } from './components/detail/detail.component';
-import { CreateProductComponent } from './components/create-product/create-product.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { NavigationLinksComponent } from './parts/navigation-links/navigation-links.component';
-import { AppRoutingModule } from './app-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from "./modules/material/material.module";
+import {AppComponent} from './app.component';
+import {HomeComponent} from './components/home/home.component';
+import {PokemonListComponent} from './components/pokemon-list/pokemon-list.component';
+import {DetailComponent} from './components/detail/detail.component';
+import {CreateProductComponent} from './components/create-product/create-product.component';
+import {ProductListComponent} from './components/product-list/product-list.component';
+import {NavigationLinksComponent} from './parts/navigation-links/navigation-links.component';
+import {AppRoutingModule} from './app-routing.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from "./modules/material/material.module";
 
 //import Pipes
-import { FilterPipe } from './pipes/filter.pipe';
+import {FilterPipe} from './pipes/filter.pipe';
 
 //import Services
-import { UserService } from "./services/user/user.service";
-import { PokemonService } from "./services/pokemon/pokemon.service";
-import { ConfigAppService } from "./services/config/config-app.service";
-import { AppConfig } from "./configuration/appConfig";
+import {UserService} from "./services/user/user.service";
+import {PokemonService} from "./services/pokemon/pokemon.service";
+import {ConfigAppService} from "./services/config/config-app.service";
+import {AppConfig} from "./configuration/appConfig";
 
 
 //import Angular Material
-import { MatButtonModule } from "@angular/material/button";
-import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
+import {MatButtonModule} from "@angular/material/button";
+import {PokemonCardComponent} from './components/pokemon-card/pokemon-card.component';
 import {FormsModule} from "@angular/forms";
 
-export function initializerFn(configAppService: ConfigAppService){
+export function initializerFn(configAppService: ConfigAppService) {
   return () => {
     return configAppService.load();
   }
@@ -72,4 +72,5 @@ export function initializerFn(configAppService: ConfigAppService){
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

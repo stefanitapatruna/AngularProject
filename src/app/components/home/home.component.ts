@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { PokemonService } from "../../services/pokemon/pokemon.service";
-import { PokemonsBook } from "../../interfaces/pokemonsBook";
-import { ConfigAppService } from "../../services/config/config-app.service";
-import { Router } from "@angular/router";
-import { SelectedPokemonService } from "../../services/selectedPokemon/selected-pokemon.service";
-import { DomSanitizer } from "@angular/platform-browser";
-import { PokemonData } from "../../interfaces/pokemonData";
-import { mergeMap } from "rxjs/operators";
-import { UserService } from "../../services/user/user.service";
+import {Component, OnInit} from '@angular/core';
+import {PokemonService} from "../../services/pokemon/pokemon.service";
+import {PokemonsBook} from "../../interfaces/pokemonsBook";
+import {ConfigAppService} from "../../services/config/config-app.service";
+import {Router} from "@angular/router";
+import {SelectedPokemonService} from "../../services/selectedPokemon/selected-pokemon.service";
+import {DomSanitizer} from "@angular/platform-browser";
+import {PokemonData} from "../../interfaces/pokemonData";
+import {mergeMap} from "rxjs/operators";
+import {UserService} from "../../services/user/user.service";
 
 
 @Component({
@@ -18,20 +18,20 @@ import { UserService } from "../../services/user/user.service";
 export class HomeComponent implements OnInit {
 
   pokemonUrl: string = '';
-  pokemonDetail= {} as PokemonData;
+  pokemonDetail = {} as PokemonData;
   pokemonIndexStart: number = 0;
   pokemonIndexEnd: number = 30;
   searchedPokemon: string = '';
   errorMessage: string = '';
 
-  pokemons = { } as PokemonsBook;
+  pokemons = {} as PokemonsBook;
 
   constructor(private _pokemonService: PokemonService,
               private configuration: ConfigAppService,
               private router: Router,
               private selectedPokemon: SelectedPokemonService,
               private sanitizer: DomSanitizer,
-              private _user:UserService ) {
+              private _user: UserService) {
 
     this.pokemonUrl = configuration.pokemonBaseApi + '?limit=30&offset=0';
   }
@@ -42,10 +42,10 @@ export class HomeComponent implements OnInit {
     this.searchForPokemon(this.searchedPokemon);
   }
 
-  getPokemons(url:string): void {
+  getPokemons(url: string): void {
     this._pokemonService.getPokemons(url)
       .subscribe(data => {
-        this.pokemons= data;
+        this.pokemons = data;
       })
   }
 
@@ -54,13 +54,13 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('detail');
   }
 
-  getPokemonsNextPage(url:string): void {
+  getPokemonsNextPage(url: string): void {
     this.getPokemons(url);
     this.pokemonIndexStart += 30;
     this.pokemonIndexEnd += 30;
   }
 
-  getPokemonsPreviousPage(url:string): void {
+  getPokemonsPreviousPage(url: string): void {
     this.getPokemons(url);
     this.pokemonIndexStart -= 30;
     this.pokemonIndexEnd -= 30;
@@ -70,16 +70,16 @@ export class HomeComponent implements OnInit {
   //   return '../../../assets/images/fallbackImage.jfif';
   // }
 
-  getPokemonImage(name:string) {
+  getPokemonImage(name: string) {
 
     this._pokemonService.getPokemonDetail(name).pipe(
-      mergeMap((responseDetail:PokemonData) => this._pokemonService.getImage(responseDetail.sprites.front_default))
-    ).subscribe( image => {
+      mergeMap((responseDetail: PokemonData) => this._pokemonService.getImage(responseDetail.sprites.front_default))
+    ).subscribe(image => {
       return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(image));
     })
   }
 
-  searchForPokemon(name:string) {
+  searchForPokemon(name: string) {
     this.selectedPokemon.getSearchedPokemon().subscribe(
       data => this.searchedPokemon = data
     )

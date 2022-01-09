@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { PokemonService } from "../../services/pokemon/pokemon.service";
-import { PokemonData } from "../../interfaces/pokemonData";
+import {Component, OnInit, Input} from '@angular/core';
+import {PokemonService} from "../../services/pokemon/pokemon.service";
+import {PokemonData} from "../../interfaces/pokemonData";
 import {switchMap} from "rxjs/operators";
 import {DomSanitizer} from "@angular/platform-browser";
 
@@ -12,19 +12,20 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class PokemonCardComponent implements OnInit {
 
 
-  @Input() pokemonName: string ='';
+  @Input() pokemonName: string = '';
 
-  private pokemonDetail = { } as PokemonData;
-  pokemonImage : any;
+  private pokemonDetail = {} as PokemonData;
+  pokemonImage: any;
 
   constructor(private _pokemonService: PokemonService,
-              private sanitizer: DomSanitizer) { }
+              private sanitizer: DomSanitizer) {
+  }
 
   ngOnInit(): void {
     this.getImage(this.pokemonName);
   }
 
-  getImage(name:string) {
+  getImage(name: string) {
 
     this._pokemonService.getPokemonDetail(name).pipe(
       switchMap(response => this._pokemonService.getImage(response.sprites.front_default))

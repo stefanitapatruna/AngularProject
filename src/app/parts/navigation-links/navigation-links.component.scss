@@ -6,7 +6,7 @@
   width: 100%;
   position: relative;
 
-  @media screen and (max-width: $breakpoint-desktop){
+  @media screen and (max-width: $breakpoint-desktop) {
     height: auto;
   }
 
@@ -18,7 +18,7 @@
       display: inline-block;
       min-width: 120px;
 
-      @media screen and (max-width: $breakpoint-desktop){
+      @media screen and (max-width: $breakpoint-desktop) {
         display: initial;
         width: 100%;
       }
@@ -27,7 +27,7 @@
 
   .menu-title {
     border-right: 1px solid $menu-color-secondary;
-    color: $menu-color-secondary;
+    color: $menu-color-active;
     line-height: 60px;
     font-weight: 700;
     margin: 0 auto;
@@ -35,7 +35,7 @@
     padding: 0 10px;
     text-decoration: none;
 
-    @media screen and (max-width: $breakpoint-desktop){
+    @media screen and (max-width: $breakpoint-desktop) {
       border-right: none;
     }
   }
@@ -48,7 +48,6 @@
     line-height: 60px;
     margin: 0 auto;
     height: 60px;
-    font-weight: 100;
     padding: 0 10px;
     text-decoration: none;
     width: 100%;
@@ -71,7 +70,7 @@
     display: block;
     border: 1px solid $menu-color-secondary;
 
-    @media screen and (max-width: $breakpoint-desktop){
+    @media screen and (max-width: $breakpoint-desktop) {
       width: 80%;
       margin: 0 10%;
     }
@@ -87,7 +86,7 @@
     margin: 5px 10px;
     padding-left: 5px;
 
-    @media screen and (max-width: $breakpoint-desktop){
+    @media screen and (max-width: $breakpoint-desktop) {
       position: initial;
       width: 80%;
       margin: 5px 10%;

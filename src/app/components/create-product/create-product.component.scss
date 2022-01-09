@@ -3,8 +3,8 @@
 .create-product-container {
   padding: 30px 60px;
 
-  @media screen and (max-width: $breakpoint-mobile){
-     padding: 10px;
+  @media screen and (max-width: $breakpoint-mobile) {
+    padding: 10px;
   }
 
   .form-element-inline {
@@ -16,6 +16,7 @@
       display: block;
       width: 100%;
     }
+
     .mat-form-field {
       width: 100%;
     }

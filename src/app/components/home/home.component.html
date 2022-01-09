@@ -9,11 +9,15 @@
 </div>
 <div class="pokemon-list">
   <app-pokemon-card class="pokemon-item" *ngFor="let item of pokemons.results | pokemonFilter : searchedPokemon"
-                     (click)="goToPokemonDetail(item.name)"
-                     [pokemonName]="item.name">
+                    (click)="goToPokemonDetail(item.name)"
+                    [pokemonName]="item.name">
   </app-pokemon-card>
 </div>
 <div class="pokemon-buttons">
-  <button mat-button color="primary" (click)="getPokemonsPreviousPage(pokemons.previous)" [disabled]="pokemons.previous === null">previous</button>
-  <button mat-button color="primary" (click)="getPokemonsNextPage(pokemons.next)" [disabled]="pokemons.next === null">next</button>
+  <button mat-button color="primary" (click)="getPokemonsPreviousPage(pokemons.previous)"
+          [disabled]="pokemons.previous === null">previous
+  </button>
+  <button mat-button color="primary" (click)="getPokemonsNextPage(pokemons.next)" [disabled]="pokemons.next === null">
+    next
+  </button>
 </div>

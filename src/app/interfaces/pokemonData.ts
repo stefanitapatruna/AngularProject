@@ -28,12 +28,12 @@ export interface PokemonData {
     front_default: string,
     back_default: string
   },
-  types: [ {
+  types: [{
     type: {
-      name : string,
-      url : string
+      name: string,
+      url: string
     }
-  } ],
+  }],
   stats: [{
     base_stat: number,
     stat:

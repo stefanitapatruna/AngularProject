@@ -1,28 +1,28 @@
-import { Injectable } from '@angular/core';
-import { AppConfig } from "../../configuration/appConfig";
-import { HttpClient } from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {AppConfig} from "../../configuration/appConfig";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigAppService extends AppConfig {
 
-  constructor( private http: HttpClient) {
+  constructor(private http: HttpClient) {
     super();
   }
 
   load() {
     return this.http.get<AppConfig>('app.config.json')
       .toPromise()
-      .then( data => {
+      .then(data => {
         this.pokemonBaseApi = data.pokemonBaseApi;
         this.pokemonDamage = data.pokemonDamage;
         this.pokemonEvolution = data.pokemonEvolution;
         this.pokemonSpecies = data.pokemonSpecies
-        this.pokemonDetailsBaseApi=data.pokemonDetailsBaseApi;
+        this.pokemonDetailsBaseApi = data.pokemonDetailsBaseApi;
         this.pokemonCategoriesUrl = data.pokemonCategoriesUrl;
       })
-      .catch(()=> {
+      .catch(() => {
         console.error("Could not load configuration");
       });
   }

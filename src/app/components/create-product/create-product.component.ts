@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl,FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PokemonService} from "../../services/pokemon/pokemon.service";
 
 @Component({
@@ -9,14 +9,15 @@ import {PokemonService} from "../../services/pokemon/pokemon.service";
 })
 export class CreateProductComponent implements OnInit {
 
-  category : string = '';
-  categories : { results: [{name: string}]} = {results : [{name:''}]};
-  constructor( private _pokemonService: PokemonService) {
+  category: string = '';
+  categories: { results: [{ name: string }] } = {results: [{name: ''}]};
+
+  constructor(private _pokemonService: PokemonService) {
     this.getCategories();
   }
 
   getCategories() {
-    this._pokemonService.getPokemonCategories().subscribe( data => {
+    this._pokemonService.getPokemonCategories().subscribe(data => {
       this.categories = data;
     })
   }

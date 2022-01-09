@@ -1,10 +1,10 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import {Pipe, PipeTransform} from "@angular/core";
 
-@Pipe({name: 'pokemonFilter' })
+@Pipe({name: 'pokemonFilter'})
 
-export class FilterPipe implements PipeTransform{
+export class FilterPipe implements PipeTransform {
 
-  transform(items:[{'name':string}], searchPokemon: string): any[] {
+  transform(items: [{ 'name': string }], searchPokemon: string): any[] {
     if (!items) {
       return [];
     }
@@ -12,7 +12,7 @@ export class FilterPipe implements PipeTransform{
       return items;
     }
 
-    return items.filter( (pokemon) => {
+    return items.filter((pokemon) => {
       return pokemon.name.includes(searchPokemon);
     });
   }

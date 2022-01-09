@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SelectedPokemonService} from "../../services/selectedPokemon/selected-pokemon.service";
 import {PokemonService} from "../../services/pokemon/pokemon.service";
 import {Router} from "@angular/router";
@@ -11,9 +11,9 @@ import {Router} from "@angular/router";
 
 export class NavigationLinksComponent implements OnInit {
 
-  translate: {[key: string] : string} = {
-    pokemon : 'Pokemon',
-    home : 'Home',
+  translate: { [key: string]: string } = {
+    pokemon: 'Pokemon',
+    home: 'Home',
     detail: 'Detail',
     createProduct: 'Create Product',
     productList: 'Product List'
@@ -23,8 +23,8 @@ export class NavigationLinksComponent implements OnInit {
   menuTitle = 'Pokemon';
   searchPokemon: string = '';
 
-  menuRoutesForAdmin = ['home','detail','createProduct','productList'];
-  menuRoutesForUser = ['home','detail'];
+  menuRoutesForAdmin = ['home', 'detail', 'createProduct', 'productList'];
+  menuRoutesForUser = ['home', 'detail'];
 
   menuRoutes = this.menuRoutesForAdmin;
 
@@ -38,18 +38,18 @@ export class NavigationLinksComponent implements OnInit {
 
   toggleAdmin() {
     this.isAdmin = !this.isAdmin;
-    if( this.isAdmin ) {
+    if (this.isAdmin) {
       this.menuRoutes = this.menuRoutesForAdmin;
     } else {
       this.menuRoutes = this.menuRoutesForUser;
     }
   }
 
-  searchForPokemon(event:any) {
+  searchForPokemon(event: any) {
     this._searchedPokemon.setSearchedPokemon(event.target.value);
   }
 
-  checkIfExist(event:any) {
+  checkIfExist(event: any) {
     this._pokemonService.getPokemonDetail(event.target.value).subscribe(
       response => {
         this.goToPokemonDetail(event.target.value);
@@ -61,7 +61,7 @@ export class NavigationLinksComponent implements OnInit {
     )
   }
 
-  goToPokemonDetail(name:string) {
+  goToPokemonDetail(name: string) {
     this._searchedPokemon.setSelectedPokemon(name);
     this.router.navigateByUrl('detail');
   }
