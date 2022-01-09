@@ -14,6 +14,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./modules/material/material.module";
 
+//import Pipes
+import { FilterPipe } from './pipes/filter.pipe';
+
 //import Services
 import { UserService } from "./services/user/user.service";
 import { PokemonService } from "./services/pokemon/pokemon.service";
@@ -24,6 +27,7 @@ import { AppConfig } from "./configuration/appConfig";
 //import Angular Material
 import { MatButtonModule } from "@angular/material/button";
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
+import {FormsModule} from "@angular/forms";
 
 export function initializerFn(configAppService: ConfigAppService){
   return () => {
@@ -40,7 +44,8 @@ export function initializerFn(configAppService: ConfigAppService){
     CreateProductComponent,
     ProductListComponent,
     NavigationLinksComponent,
-    PokemonCardComponent
+    PokemonCardComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,8 @@ export function initializerFn(configAppService: ConfigAppService){
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ],
   providers: [
     UserService,

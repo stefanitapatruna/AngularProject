@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
   pokemonDetail= {} as PokemonData;
   pokemonIndexStart: number = 0;
   pokemonIndexEnd: number = 30;
+  searchedPokemon: string = '';
+  errorMessage: string = '';
 
   pokemons = { } as PokemonsBook;
 
@@ -35,7 +37,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getErrorMessage();
     this.getPokemons(this.pokemonUrl);
+    this.searchForPokemon(this.searchedPokemon);
   }
 
   getPokemons(url:string): void {
@@ -73,5 +77,15 @@ export class HomeComponent implements OnInit {
     ).subscribe( image => {
       return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(image));
     })
+  }
+
+  searchForPokemon(name:string) {
+    this.selectedPokemon.getSearchedPokemon().subscribe(
+      data => this.searchedPokemon = data
+    )
+  }
+
+  getErrorMessage() {
+    this.selectedPokemon.getErrorMessage().subscribe(response => this.errorMessage = response)
   }
 }

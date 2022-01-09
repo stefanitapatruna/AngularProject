@@ -4,8 +4,14 @@
     <li *ngFor="let listItem of menuRoutes">
       <a routerLink="{{listItem}}" routerLinkActive="active">{{translate[listItem]}}</a>
     </li>
-    <li class="">
-      <button mat-button color="primary" (click)="toggleAdmin()">Toggle Admin</button>
+    <li>
+      <button class="toggle-button" mat-button color="primary" (click)="toggleAdmin()">Toggle Admin</button>
+    </li>
+    <li>
+        <input class="search-input" type="text" id="search-pokemon"
+               (keyup.enter)="checkIfExist($event)"
+               (input)="searchForPokemon($event)"
+               placeholder="search pokemon">
     </li>
   </ul>
 </div>
