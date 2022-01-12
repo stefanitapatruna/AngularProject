@@ -1,0 +1,11 @@
+<div class="custom-pokemon-card">
+  <div class="pokemon-image">
+    <img class="custom-pokemon-image" [src]="customPokemonImage ? customPokemonImage : '../../../assets/images/fallbackImage.jfif'">
+  </div>
+  <div class="pokemon-info">
+    <div class="title">{{customPokemon.name}}</div>
+    <p>Description:<span>{{customPokemon.description}}</span></p>
+    <p>Price:<span>{{customPokemon.price}}</span></p>
+    <p>Category:<span>{{customPokemon.categories}}</span></p>
+  </div>
+</div>

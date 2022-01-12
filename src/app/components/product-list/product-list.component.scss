@@ -1,0 +1,22 @@
+@import "../../../assets/styles/variables";
+
+.product-list-container {
+  padding: 20px 10px;
+}
+
+.custom-card-inline {
+  display: inline-block;
+  width: 30%;
+
+  @media screen and (max-width: $breakpoint-desktop) {
+    width: 100%;
+    display: block;
+  }
+}
+
+.delete-button {
+  @media screen and (max-width: $breakpoint-desktop) {
+    width: 100%;
+    margin: 5px;
+  }
+}

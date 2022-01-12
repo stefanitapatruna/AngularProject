@@ -1,6 +1,8 @@
 import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {CommonModule} from "@angular/common";
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http";
+import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 
 //import Components
 import {AppComponent} from './app.component';
@@ -26,8 +28,8 @@ import {AppConfig} from "./configuration/appConfig";
 
 //import Angular Material
 import {MatButtonModule} from "@angular/material/button";
-import {PokemonCardComponent} from './components/pokemon-card/pokemon-card.component';
-import {FormsModule} from "@angular/forms";
+import {PokemonCardComponent} from './parts/pokemon-card/pokemon-card.component';
+import { CustomPokemonComponent } from './parts/custom-pokemon/custom-pokemon.component';
 
 export function initializerFn(configAppService: ConfigAppService) {
   return () => {
@@ -45,16 +47,19 @@ export function initializerFn(configAppService: ConfigAppService) {
     ProductListComponent,
     NavigationLinksComponent,
     PokemonCardComponent,
-    FilterPipe
+    FilterPipe,
+    CustomPokemonComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     UserService,

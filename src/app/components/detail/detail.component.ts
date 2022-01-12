@@ -37,8 +37,6 @@ export class DetailComponent implements OnInit {
       this.pokemonDetail.height = (this.pokemonDetail.height * 0.1).toFixed(2);
       this.getPokemonImage(this.pokemonDetail.sprites.front_default);
       this.getPokemonCompleteDetails(this.pokemonDetail.id);
-      console.log('pokemon evolution chain url', this.pokemonDetail);
-      console.log('pokemon species 1', this.pokemonDetail.species)
     })
   }
 
@@ -60,8 +58,6 @@ export class DetailComponent implements OnInit {
 
   getEvolutionDetail(url: string) {
     this._pokemonService.getPokemonEvolution(url).subscribe(data => {
-        //this.pokemonDetail.evolution = data;
-        console.log('here is evolution chain after map', data);
       }
     );
   }

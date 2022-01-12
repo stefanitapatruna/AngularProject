@@ -1,6 +1,6 @@
 <div class="detail-container">
   <div *ngIf="pokemonDetail.id">
-    <div class="main-title" [style.background-color]="pokemonDetail.species.color.name">
+    <div class="main-title" [style.background-color]="pokemonDetail.species?.color?.name">
       {{pokemonDetail.name}}
     </div>
     <div class="detail-section">
@@ -29,7 +29,7 @@
         <p>#{{pokemonDetail.id}}</p>
       </div>
       <div class="flavor-text">
-        <p>{{this.pokemonDetail.species.flavor_text_entries[0].flavor_text}}</p>
+        <p>{{pokemonDetail.species.flavor_text_entries[0].flavor_text}}</p>
       </div>
     </div>
     <div class="section">

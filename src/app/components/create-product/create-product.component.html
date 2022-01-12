@@ -1,52 +1,86 @@
 <div class="create-product-container">
-  <div class="form-element-inline">
-    <mat-form-field>
-      <mat-label>Name</mat-label>
-      <input matInput>
-    </mat-form-field>
-  </div>
-  <div class="form-element-inline">
-    <mat-form-field>
-      <mat-label>Description</mat-label>
-      <input matInput>
-    </mat-form-field>
-  </div>
-  <div class="form-element-inline">
-    <mat-form-field>
-      <mat-label>Price</mat-label>
-      <input matInput>
-    </mat-form-field>
-  </div>
-  <div class="form-element-inline">
-    <mat-form-field>
-      <mat-label>Categories</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let option of categories.results" value="{{option.name}}">{{option.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="form-element-inline">
-    <mat-form-field>
-      <mat-label>Image URL</mat-label>
-      <input matInput>
-    </mat-form-field>
-  </div>
-  <div class="form-element-inline">
-    <div class="phone-field">
+  <form [formGroup]="pokemonForm" (ngSubmit)="savePokemon()">
+    <div class="form-element-inline">
       <mat-form-field>
-        <mat-label>Phone</mat-label>
-        <input matInput type="number">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
       </mat-form-field>
     </div>
-    <div class="phone-country-prefix">
+    <div class="form-element-inline">
       <mat-form-field>
-        <mat-label>Country</mat-label>
-        <mat-select>
-          <mat-option value="+40">Romania</mat-option>
-          <mat-option value="+44">United Kingdom</mat-option>
-          <mat-option value="+49">Germany</mat-option>
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description">
+      </mat-form-field>
+    </div>
+    <div class="form-element-inline">
+      <mat-form-field>
+        <mat-label>Price</mat-label>
+        <input type="text" matInput formControlName="price">
+      </mat-form-field>
+    </div>
+    <div class="form-element-inline">
+      <mat-form-field>
+        <mat-label>Categories</mat-label>
+        <mat-select formControlName="categories">
+          <mat-option *ngFor="let option of categoriesArray" value="{{option}}">{{option}}</mat-option>
         </mat-select>
       </mat-form-field>
+    </div>
+    <div class="form-element-inline">
+      <mat-form-field>
+        <mat-label>Image URL</mat-label>
+        <input matInput formControlName="imageUrl">
+      </mat-form-field>
+    </div>
+    <div class="form-element-inline">
+      <div class="phone-field">
+        <mat-form-field>
+          <mat-label>Phone</mat-label>
+          <input matInput type="text" formControlName="phone">
+        </mat-form-field>
+      </div>
+      <div class="phone-country-prefix">
+        <mat-form-field>
+          <mat-label>Country</mat-label>
+          <mat-select formControlName="country">
+            <mat-option value="+40">Romania</mat-option>
+            <mat-option value="+44">United Kingdom</mat-option>
+            <mat-option value="+49">Germany</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="buttons-container">
+      <button mat-button type="submit" color="primary" [disabled]="!pokemonForm.valid">Save</button>
+      <button mat-button color="primary" (click)="pokemonForm.reset()">Reset</button>
+    </div>
+  </form>
+  <div *ngIf="!pokemonForm.valid" class="error-message">
+    <div *ngIf="name?.invalid && (name?.touched || name?.dirty)">
+       <p *ngIf="name?.hasError('required')"> Name field is required</p>
+       <p *ngIf="name?.hasError('minlength')">This field should have min {{name?.errors?.minlength?.requiredLength}} characters</p>
+       <p *ngIf="name?.hasError('pattern')">Only alphabets and number allowed</p>
+    </div>
+    <div *ngIf="description?.invalid && (description?.touched || description?.dirty)">
+      <p *ngIf="description?.hasError('required')"> Description field is required</p>
+      <p *ngIf="description?.hasError('minlength')">This field should have min {{description?.errors?.minlength?.requiredLength}} characters</p>
+      <p *ngIf="description?.hasError('pattern')">Only alphabets and number allowed</p>
+    </div>
+    <div *ngIf="price?.invalid && (price?.touched || price?.dirty)">
+      <p *ngIf="price?.hasError('required')"> Price field is required</p>
+      <p *ngIf="price?.hasError('pattern')">Only numbers allowed for Price</p>
+    </div>
+    <div *ngIf="categories?.invalid && (categories?.touched || categories?.dirty)">
+      <p *ngIf="categories?.hasError('required')"> Categories field is required</p>
+    </div>
+    <div *ngIf="imageUrl?.invalid && (imageUrl?.touched || imageUrl?.dirty)">
+      <p *ngIf="imageUrl?.hasError('required')"> imageUrl field is required</p>
+      <p *ngIf="imageUrl?.errors?.invalidUrl"> Image Url is invalid. Url should start with https</p>
+    </div>
+    <div *ngIf="phone?.invalid && (phone?.touched || phone?.dirty)">
+      <p *ngIf="phone?.hasError('required')"> Phone field is required</p>
+      <p *ngIf="phone?.hasError('pattern')">Only numbers allowed for Phone</p>
+      <p *ngIf="phone?.hasError('maxlength')">This field should have max {{phone?.errors?.maxlength?.requiredLength}} characters</p>
     </div>
   </div>
 </div>

@@ -42,6 +42,7 @@ export class NavigationLinksComponent implements OnInit {
       this.menuRoutes = this.menuRoutesForAdmin;
     } else {
       this.menuRoutes = this.menuRoutesForUser;
+      this.router.navigateByUrl('home');
     }
   }
 
@@ -51,14 +52,13 @@ export class NavigationLinksComponent implements OnInit {
 
   checkIfExist(event: any) {
     this._pokemonService.getPokemonDetail(event.target.value).subscribe(
-      response => {
+      (response) => {
         this.goToPokemonDetail(event.target.value);
         this._searchedPokemon.setSelectedPokemon(event.target.value);
       },
       error => {
         this._searchedPokemon.setErrorMessage('This pokemon does not exist');
-      }
-    )
+      })
   }
 
   goToPokemonDetail(name: string) {
