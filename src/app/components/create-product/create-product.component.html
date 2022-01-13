@@ -57,13 +57,15 @@
   </form>
   <div *ngIf="!pokemonForm.valid" class="error-message">
     <div *ngIf="name?.invalid && (name?.touched || name?.dirty)">
-       <p *ngIf="name?.hasError('required')"> Name field is required</p>
-       <p *ngIf="name?.hasError('minlength')">This field should have min {{name?.errors?.minlength?.requiredLength}} characters</p>
-       <p *ngIf="name?.hasError('pattern')">Only alphabets and number allowed</p>
+      <p *ngIf="name?.hasError('required')"> Name field is required</p>
+      <p *ngIf="name?.hasError('minlength')">This field should have min {{name?.errors?.minlength?.requiredLength}}
+        characters</p>
+      <p *ngIf="name?.hasError('pattern')">Only alphabets and number allowed</p>
     </div>
     <div *ngIf="description?.invalid && (description?.touched || description?.dirty)">
       <p *ngIf="description?.hasError('required')"> Description field is required</p>
-      <p *ngIf="description?.hasError('minlength')">This field should have min {{description?.errors?.minlength?.requiredLength}} characters</p>
+      <p *ngIf="description?.hasError('minlength')">This field should have
+        min {{description?.errors?.minlength?.requiredLength}} characters</p>
       <p *ngIf="description?.hasError('pattern')">Only alphabets and number allowed</p>
     </div>
     <div *ngIf="price?.invalid && (price?.touched || price?.dirty)">
@@ -80,7 +82,8 @@
     <div *ngIf="phone?.invalid && (phone?.touched || phone?.dirty)">
       <p *ngIf="phone?.hasError('required')"> Phone field is required</p>
       <p *ngIf="phone?.hasError('pattern')">Only numbers allowed for Phone</p>
-      <p *ngIf="phone?.hasError('maxlength')">This field should have max {{phone?.errors?.maxlength?.requiredLength}} characters</p>
+      <p *ngIf="phone?.hasError('maxlength')">This field should have max {{phone?.errors?.maxlength?.requiredLength}}
+        characters</p>
     </div>
   </div>
 </div>

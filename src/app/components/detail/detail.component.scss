@@ -161,4 +161,21 @@
   .flavor-text {
     padding: 0 10px;
   }
+
+  .evolution-images, .evolution-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .evolution-image, .p {
+      display: inline-block;
+      width: 120px;
+    }
+  }
+
+  .evolution-info {
+    span {
+      font-weight: bold;
+    }
+  }
 }

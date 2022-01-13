@@ -1,3 +1,5 @@
+import {Evolution} from "./evolution";
+
 export interface PokemonSpecies {
   egg_groups: [{
     name: string
@@ -43,10 +45,9 @@ export interface PokemonData {
       }
   }],
   could_evolve: boolean,
-  evolves_to: {
-    name: string,
-    condition: string
-  },
+  evolves_to: string,
+  evolves_to_condition: number,
   species: PokemonSpecies,
   moves: {}
 }
+

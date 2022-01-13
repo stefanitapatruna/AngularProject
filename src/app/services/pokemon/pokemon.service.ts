@@ -5,6 +5,7 @@ import {PokemonsBook} from "../../interfaces/pokemonsBook";
 import {PokemonData} from "../../interfaces/pokemonData";
 import {PokemonSpecies} from "../../interfaces/pokemonData";
 import {Observable, forkJoin} from "rxjs";
+import {Evolution} from "../../interfaces/evolution";
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class PokemonService {
     return this.http.get<PokemonData>(this.pokemonDetailsBaseApi + name);
   }
 
-  getPokemonEvolution(url: string): Observable<{}> {
+  getPokemonEvolution(url: string): Observable<Evolution> {
     return this.http.get<any>(url, {observe: 'body', responseType: "json"});
   }
 

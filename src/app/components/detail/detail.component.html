@@ -29,7 +29,7 @@
         <p>#{{pokemonDetail.id}}</p>
       </div>
       <div class="flavor-text">
-        <p>{{pokemonDetail.species.flavor_text_entries[0].flavor_text}}</p>
+        <p>{{pokemonDetail.species.flavor_text_entries[0]?.flavor_text}}</p>
       </div>
     </div>
     <div class="section">
@@ -68,10 +68,22 @@
     </div>
     <div class="section">
       <div class="section-title" [style.background-color]="pokemonDetail.species.color.name">Evolutions</div>
-
-    </div>
-    <div class="section">
-      <div class="section-title" [style.background-color]="pokemonDetail.species.color.name">Damage when attacked</div>
+      <div *ngIf="this.pokemonDetail.could_evolve">
+        <div class="evolution-images">
+          <img class="evolution-image" [src]="pokemonImage">
+          <p>&#8594;</p>
+          <img class="evolution-image" [src]="evolveToImage">
+        </div>
+        <div class="evolution-info">
+          <p><span>{{this.pokemonDetail.name}}</span> evolves to
+            <span>{{this.pokemonDetail.evolves_to}}</span>
+            at min level <span>{{this.pokemonDetail.evolves_to_condition}}</span></p>
+        </div>
+      </div>
+      <div *ngIf="!this.pokemonDetail.could_evolve">
+        <p class="error-message">
+          This pokemon can't evolve. It is in the last stage of evolution.</p>
+      </div>
     </div>
   </div>
   <div class="loading-container" *ngIf="!pokemonDetail.id">

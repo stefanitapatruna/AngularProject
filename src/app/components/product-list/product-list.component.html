@@ -1,8 +1,8 @@
 <div class="product-list-container">
   <div *ngIf="customPokemonExist()">
-      <app-custom-pokemon *ngFor="let pokemon of customPokemonArray"
-                          [customPokemon]="pokemon"
-                          class="custom-card-inline"></app-custom-pokemon>
+    <app-custom-pokemon *ngFor="let pokemon of customPokemonArray"
+                        [customPokemon]="pokemon"
+                        class="custom-card-inline"></app-custom-pokemon>
   </div>
   <div *ngIf="!customPokemonExist()" class="error-message">
     No custom pokemon saved. To create a custom pokemon go to create product page.

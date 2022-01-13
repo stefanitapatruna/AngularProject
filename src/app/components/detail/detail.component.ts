@@ -4,7 +4,8 @@ import {PokemonData} from "../../interfaces/pokemonData";
 import {SelectedPokemonService} from "../../services/selectedPokemon/selected-pokemon.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {forkJoin, of} from "rxjs";
-import {map} from "rxjs/operators";
+import {map, switchMap} from "rxjs/operators";
+import {Evolution} from "../../interfaces/evolution";
 
 @Component({
   selector: 'app-detail',
@@ -14,8 +15,10 @@ import {map} from "rxjs/operators";
 
 export class DetailComponent implements OnInit {
 
-  pokemonImage: any;
   pokemonDetail = {} as PokemonData;
+  evolutionChain = {} as Evolution;
+  pokemonImage: any;
+  evolveToImage: any;
   loading: boolean = true;
 
   constructor(private _pokemonService: PokemonService,
@@ -51,15 +54,38 @@ export class DetailComponent implements OnInit {
   getSpeciesDetail(id: number) {
     this._pokemonService.getPokemonSpecies(id).subscribe(data => {
         this.pokemonDetail.species = data;
-        this.getEvolutionDetail(this.pokemonDetail.species.evolution_chain.url);
+        this.getEvolutionChain(this.pokemonDetail.species.evolution_chain.url);
       }
     );
   }
 
-  getEvolutionDetail(url: string) {
+  getEvolutionChain(url: string) {
     this._pokemonService.getPokemonEvolution(url).subscribe(data => {
+        this.evolutionChain = data;
+        this.getEvolutionDetails(this.pokemonDetail.name, data.chain);
       }
     );
+  }
+
+  getEvolutionDetails(name: string, evolution: any) {
+    let details: any;
+    let couldEvolve: boolean = false;
+    if (name === evolution.species.name) {
+      couldEvolve = true;
+      details = evolution.evolves_to[0];
+    } else if (name === evolution.evolves_to[0].species.name) {
+      couldEvolve = true;
+      details = evolution.evolves_to[0].evolves_to[0];
+    }
+    this.pokemonDetail.could_evolve = couldEvolve;
+    this.pokemonDetail.evolves_to = details.species.name;
+    this.pokemonDetail.evolves_to_condition = details.evolution_details[0].min_level;
+
+    this._pokemonService.getPokemonDetail(this.pokemonDetail.evolves_to).pipe(
+      switchMap(response => this._pokemonService.getImage(response.sprites.front_default))
+    ).subscribe(
+      result => this.evolveToImage = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(result)));
+
   }
 
   getPokemonImage(url: string) {

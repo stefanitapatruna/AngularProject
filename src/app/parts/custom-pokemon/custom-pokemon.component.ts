@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {CustomPokemon} from "../../interfaces/CustomPokemon";
 import {PokemonService} from "../../services/pokemon/pokemon.service";
 import {DomSanitizer} from "@angular/platform-browser";
@@ -10,12 +10,12 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class CustomPokemonComponent implements OnInit {
 
-  @Input() customPokemon = { } as CustomPokemon;
+  @Input() customPokemon = {} as CustomPokemon;
 
-  customPokemonImage : any = undefined;
+  customPokemonImage: any = undefined;
 
-  constructor( private _pokemonService: PokemonService,
-               private _sanitizer: DomSanitizer) {
+  constructor(private _pokemonService: PokemonService,
+              private _sanitizer: DomSanitizer) {
     this.customPokemon = {
       name: '',
       description: '',
@@ -28,12 +28,11 @@ export class CustomPokemonComponent implements OnInit {
   }
 
 
-
   ngOnInit(): void {
     this.getImage(this.customPokemon.imageUrl);
   }
 
-  getImage(url:string) {
+  getImage(url: string) {
     this._pokemonService.getImage(url).subscribe(data =>
       this.customPokemonImage = this._sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data)))
   }

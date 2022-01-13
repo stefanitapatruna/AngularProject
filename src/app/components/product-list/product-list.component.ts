@@ -9,7 +9,7 @@ import {CustomPokemon} from "../../interfaces/CustomPokemon";
 export class ProductListComponent implements OnInit {
 
   pokemon = {} as CustomPokemon;
-  customPokemonArray : any;
+  customPokemonArray: any;
 
   constructor() {
     this.initializePokemonArray();
@@ -38,7 +38,7 @@ export class ProductListComponent implements OnInit {
     this.initializePokemonArray();
   }
 
-  initializePokemonArray(){
+  initializePokemonArray() {
     this.customPokemonArray = [{
       name: '',
       description: '',

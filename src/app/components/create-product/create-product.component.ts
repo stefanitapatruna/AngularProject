@@ -22,12 +22,12 @@ export class CreateProductComponent implements OnInit {
   categoriesArray = ['electronics', 'cloths', 'blankets'];
   pokemonForm: FormGroup;
   urlIsValid: boolean = false;
-  createPokemon = { } as CustomPokemon;
-  storage : any;
+  createPokemon = {} as CustomPokemon;
+  storage: any;
 
   constructor(private _pokemonService: PokemonService,
               private fb: FormBuilder,
-              private router:Router) {
+              private router: Router) {
     this.pokemonForm = this.fb.group({
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9]*$/)]),
       description: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9]*$/)]),
