@@ -1,5 +1,3 @@
-import {Evolution} from "./evolution";
-
 export interface PokemonSpecies {
   egg_groups: [{
     name: string
